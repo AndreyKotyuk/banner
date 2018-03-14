@@ -34,9 +34,9 @@ class UserController{
 			if (!User::checkPassword($password)) {
 				$errors[] = 'Пароль не должен быть короче 6-ти символов';
 			}
-			// if (User::checkEmailExists($email)) {
-			// 	$errors[] = 'Такой email уже используется';
-			// }
+			if (User::checkEmailExists($email)) {
+				$errors[] = 'Такой email уже используется';
+			}
 
 			if ($errors == false) {
                 // Если ошибок нет

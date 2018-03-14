@@ -39,4 +39,27 @@ class User{
         }
         return false;
     }
+
+     /**
+     * Проверяет не занят ли email другим пользователем
+     * @param type $email <p>E-mail</p>
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function checkEmailExists($email)
+    {
+        // Соединение с БД        
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT COUNT(*) FROM users WHERE email = :email';
+
+        // Получение результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->execute();
+
+        if ($result->fetchColumn())
+            return true;
+        return false;
+    }
 }
