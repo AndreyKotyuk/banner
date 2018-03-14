@@ -8,7 +8,9 @@ class SiteController
     public function actionIndex()
     {
     	echo "Главный вид страницы";
-    	return true;
+    	 // Подключаем вид
+        require_once(ROOT . '/views/blog/index.php');
+        return true;
     }
 
       public function actionView($id)
