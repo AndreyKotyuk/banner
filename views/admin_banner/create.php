@@ -1,0 +1,67 @@
+<?php include ROOT . '/views/layouts/header.php'; ?>
+
+<section>
+    <div class="container">
+        <div class="row">
+
+            <br/>
+            
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="/admin">Админпанель</a></li>
+                    <li><a href="/admin/order">Управление баннером</a></li>
+                    <li class="active">Добавить банер</li>
+                </ol>
+            </div>
+
+
+            <h4>Добавить новый банер</h4>
+
+            <br/>
+
+            <?php if (isset($errors) && is_array($errors)): ?>
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li> - <?php echo $error; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <div class="col-lg-8">
+                <div class="login-form">
+                    <form action="#" method="post" enctype="multipart/form-data">
+
+                        <p>Название</p>
+                        <input type="text" name="name" placeholder="" value="">
+                        <div class="section">
+                            <p>Image</p>
+
+                            <input id ="img" type="file" name="image" placeholder="" value="">
+                        </div >
+                        
+
+                        <p>URL</p>
+                        <input type="text" name="url" placeholder="" value="">
+
+                        <p>Порядковый номер</p>
+                        <input type="text" name="position" placeholder="" value="">
+
+                        <p>Статус</p>
+                        <select name="status">
+                            <option value="1" selected="selected">Отображается</option>
+                            <option value="0">Скрыта</option>
+                        </select>
+
+                        <br><br>
+
+                        <input type="submit" name="submit" class="btn btn-default" value="Сохранить">
+                    </form>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</section>
+
+<?php include ROOT . '/views/layouts/footer.php'; ?>
+

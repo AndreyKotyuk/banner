@@ -3,7 +3,7 @@
 // Массив с параметрами подключения к базе данных
 return array(
     'host' => 'localhost',
-    'dbname' => 'banner',
+    'dbname' => 'mybanner',
     'user' => 'root',
-    'password' => '',
+    'password' => 'v646vb',
 );

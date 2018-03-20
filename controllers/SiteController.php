@@ -7,7 +7,10 @@ class SiteController
      */
     public function actionIndex()
     {
-    	echo "Главный вид страницы";
+      
+        // Получаем список товаров
+        $bannerList = Banner::getBannerList();
+    	
     	 // Подключаем вид
         require_once(ROOT . '/views/blog/index.php');
         return true;
@@ -15,7 +18,12 @@ class SiteController
 
       public function actionView($id)
     {
-    	echo "вид страницы под номером $id";
+    	var_dump(gd_info());
     	return true;
     }
+    //    public function actionView($id)
+    // {
+    //     echo "вид страницы под номером $id";
+    //     return true;
+    // }
 }

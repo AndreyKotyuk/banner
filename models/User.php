@@ -129,7 +129,7 @@ class User{
     public static function auth($userId)
     {
 
-        session_start();
+        // session_start();
         // Записываем идентификатор пользователя в сессию
         $_SESSION['user'] = $userId;
 
@@ -142,7 +142,7 @@ class User{
      */
     public static function checkLogged()
     {
-        session_start();
+        // session_start();
         // Если сессия есть, вернем идентификатор пользователя
         if (isset($_SESSION['user'])) {
             return $_SESSION['user'];
@@ -150,4 +150,40 @@ class User{
 
         header("Location: /login");
     }
+        /**
+     * Проверяет является ли пользователь гостем
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function isGuest()
+    {
+        if (isset($_SESSION['user'])) {
+            return false;
+        }
+        return true;
+    }
+
+     /**
+     * Возвращает пользователя с указанным id
+     * @param integer $id <p>id пользователя</p>
+     * @return array <p>Массив с информацией о пользователе</p>
+     */
+    public static function getUserById($id)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM users WHERE id = :id';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        return $result->fetch();
+    }
+
 }
